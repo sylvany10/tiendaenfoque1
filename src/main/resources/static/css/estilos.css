@@ -1,0 +1,45 @@
+.btn-actualizar{
+    background-color: rgb(127, 124, 212);
+}
+.btn-eliminar{
+    background-color: rgb(26, 212, 112);
+}
+.btn-guardar{
+    background-color: lightslategray;
+    color: white;
+}
+.btn-nuevoP{
+    background-color: mediumslateblue;
+}
+/* estilos.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #c90404 !important;
+}
+
+.navbar-brand img {
+    border-radius: 8px;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+
+
+
+
+#carouselExampleIndicators {
+    margin-top: 80px;
+}
