@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <title>Servicios</title>
 </head>
 <body>
 <!--NAV-->
@@ -37,32 +37,33 @@
         </div>
     </div>
 </nav>
-<!--CARRUSEL-->
-    <div id="carouselExampleIndicators" class="carousel slide mt-1">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img th:src="@{/imagenes/diseno.jpg}" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img th:src="@{/imagenes/anuarios.png}" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img th:src="@{/imagenes/ppromo2.jpg}" class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+<h2>Lista de Servicios</h2>
+<div class="container mt-4">
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr th:each="servicio: ${servicios}">
+                    <td th:text="${servicio.id}"></td>
+                    <td th:text="${servicio.cliente?.nombreCliente + ' ' + servicio.cliente?.apellidoCliente}"></td>
+                    <td th:text="${servicio.descripcion}"></td>
+                    <td th:text="${servicio.precio}"></td>
+                    <td>
+                        <a th:href="@{/servicio/editar/{idServicio}(idServicio=${servicio.id})}"class="btn btn-warning btn-sm">Actualizar</a>
+                        <a th:href="@{/servicio/eliminar/{idServicio}(idServicio=${servicio.id})}"class="btn btn-warning btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+
+            </tbody>
+    </table>
+    <a th:href="@{/servicio/nuevo}" class="btn btn-primary text-white btn-sm">Nuevo Servicio</a>
 </div>
 </body>
 </html>

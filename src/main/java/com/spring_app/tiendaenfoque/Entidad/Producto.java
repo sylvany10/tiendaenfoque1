@@ -4,9 +4,10 @@ package com.spring_app.tiendaenfoque.Entidad;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
-@Table(name = "tabla_producto")
 public class Producto {
 
     @Id
@@ -19,5 +20,8 @@ public class Producto {
     private Double precio;
 
     private int stock;
+
+    @ManyToMany(mappedBy = "productos")
+    private List<Cliente> clientes;
 
 }

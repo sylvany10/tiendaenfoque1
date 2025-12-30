@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/estilos.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <title>Clientes</title>
 </head>
 <body>
 <!--NAV-->
@@ -37,32 +37,35 @@
         </div>
     </div>
 </nav>
-<!--CARRUSEL-->
-    <div id="carouselExampleIndicators" class="carousel slide mt-1">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<!--LISTA CLIENTES-->
+    <h2>Lista de Clientes</h2>
+    <div class="container mt-4">
+        <table>
+            <thead>
+               <tr>
+                   <th>CodigoCliente</th>
+                   <th>NombreCliente</th>
+                   <th>ApellidoCliente</th>
+                   <th>DireccionCliente</th>
+                   <th>TelefonoCliente</th>
+                   <th>Acciones</th>
+               </tr>
+            </thead>
+                <tbody>
+                    <tr th:each="cliente: ${clientes}">
+                        <td th:text="${cliente.id}"></td>
+                        <td th:text="${cliente.nombreCliente}"></td>
+                        <td th:text="${cliente.apellidoCliente}"></td>
+                        <td th:text="${cliente.direccionCliente}"></td>
+                        <td th:text="${cliente.telefonoCliente}"></td>
+                        <td>
+                            <a th:href="@{/clientes/editarCliente/{id}(id=${cliente.id})}"class="btn btn-warning btn-sm">Actualizar</a>
+                            <a th:href="@{/clientes/eliminarCliente/{id}(id=${cliente.id})}"class="btn btn-warning btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+        <a th:href="@{/clientes/formularioCliente}"class="btn btn-primary text-white btn-sm">Nuevo Cliente</a>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img th:src="@{/imagenes/diseno.jpg}" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img th:src="@{/imagenes/anuarios.png}" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img th:src="@{/imagenes/ppromo2.jpg}" class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 </body>
 </html>

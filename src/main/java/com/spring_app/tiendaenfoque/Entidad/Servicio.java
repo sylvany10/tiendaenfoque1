@@ -2,20 +2,26 @@ package com.spring_app.tiendaenfoque.Entidad;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
+
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "tabla_pedido")
-public class Pedido {
+public class Servicio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(unique = true, nullable = false)
-    private String cliente_id;
+    private String descripcion;
+
+    private Double precio;
 
     private int cantidad;
 
-    private double precio;
+    @OneToOne(mappedBy = "servicio")
+    @ToString.Exclude
+    private Cliente cliente;
+
 }

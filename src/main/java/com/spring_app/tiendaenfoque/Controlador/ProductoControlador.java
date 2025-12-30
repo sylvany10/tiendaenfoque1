@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,9 @@ public class ProductoControlador {
 
     //LEER
     @GetMapping ("/productos")
-    public String mostrarProductos(Model model){
-        List<Producto> productos = productoServicio.listarProductos();
+    public String mostrarProductos(@RequestParam(name = "buscarProducto", required = false, defaultValue = "") String buscarProducto, Model model){
+        List<Producto> productos = productoServicio.buscarProductoNombre(buscarProducto);
+        model.addAttribute("buscarProducto", buscarProducto);
         model.addAttribute("productos", productos);
         return "Producto/listaProductos";
     }

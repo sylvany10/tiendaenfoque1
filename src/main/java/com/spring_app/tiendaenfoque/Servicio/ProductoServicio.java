@@ -19,9 +19,17 @@ public class ProductoServicio {
         return productoRepositorio.findAll();
     }
 
+    public List<Producto> buscarProductoNombre(String buscarProducto){
+        if(buscarProducto==null || buscarProducto.isEmpty()){
+            return productoRepositorio.findAll();
+        }else {
+            return productoRepositorio.findByNombreContainingIgnoreCase(buscarProducto);
+        }
+    }
     public Optional<Producto> buscarProducto(Long id){
         return productoRepositorio.findById(id);
     }
+
     public void guardarProducto(Producto producto){
         productoRepositorio.save(producto);
     }

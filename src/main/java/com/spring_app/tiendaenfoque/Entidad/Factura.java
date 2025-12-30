@@ -7,17 +7,14 @@ import lombok.Data;
 @Data
 @Entity
 @Table (name = "tabla_proveedor")
-public class Proveedor {
+public class Factura {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (unique = true, nullable = false)
-    private String ruc;
+    private Integer numero;
+    private Double precio;
+    private Integer cantidad;
 
-    @Column (unique = true, nullable = false)
-    private String nombre;
-
-    private String telefono;
 }
